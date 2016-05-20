@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">News and updates</div>
+                            <div class="panel-heading">NEWS AND UPDATES</div>
                             <div class="panel-body">
 
                                 <ul class="list-group">
@@ -119,21 +119,21 @@
 
 
                     <form class="form-horizontal" role="form">
-                        <div>
-                            <p align="center">Login to your account</p>
+                        <div class="panel-heading">
+                            <p align="left">LOGIN ACCOUNT</p>
                         </div>
                         <div class="form-group">
 
                             <div class="col-sm-12 input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" class="form-control" id="studentID" placeholder="Enter Student Number">
+                                <input type="text" class="form-control" id="studentID" placeholder="Student Number (e.g., 2014-0001-A)">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-sm-12 input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                                <input type="password" class="form-control" id="passwd" placeholder="Enter password">
+                                <input type="password" class="form-control" id="passwd" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -145,15 +145,14 @@
                 </div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">How to login</div>
+                    <div class="panel-heading">HOW TO LOGIN</div>
                     <div class="panel-body">
                         <ol type="1" class="list-group">
-                            <li class="list-group-item list-num">Enter your Student Number (e.g. 2015-1002-A)</li>
+                            <li class="list-group-item list-num">Enter your Student ID Number (e.g. 2015-1002-A)</li>
                             <li class="list-group-item list-num">Enter your password</li>
-                            <li class="list-group-item list-num">click the "Login" button.</li>
+                            <li class="list-group-item list-num">Click the "Login" button.</li>
                             <li class="list-group-item list-num">For new users, please see MIS office for your password.
                             </li>
-
                         </ol>
 
 
@@ -161,7 +160,7 @@
                 </div>
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Like Us on Facebook</div>
+                    <div class="panel-heading">LIKE US ON FACEBOOK</div>
                     <div class="panel-body">
                         <div class="fb-page" data-href="https://www.facebook.com/universityofantique/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                             <div class="fb-xfbml-parse-ignore">
