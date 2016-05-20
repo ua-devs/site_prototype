@@ -44,3 +44,8 @@ max-width: 100%;
 width: 100%;
 left: 0;
 }
+
+.panel-heading {
+    font-family: 'Open Sans Bold', 'Arial Narrow', sans-serif;
+    font-size: 12px;
+}
