@@ -46,6 +46,7 @@ left: 0;
 }
 
 .panel-heading {
-    font-family: 'Open Sans Bold', 'Arial Narrow', sans-serif;
-    font-size: 12px;
+    font-family: 'Open Sans Condensed', 'Arial Narrow', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
 }
