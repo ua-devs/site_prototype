@@ -4,56 +4,13 @@
 <head>
     <title>Home - UALink</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style>
-        .bg-nav {
-            background-color: #8B0000;
-            color: #ffffff;
-        }
-        .nav.navbar-nav.navbar-color li a {
-            color: #FFFFFF;
-        }
-        .navbar-default .navbar-brand {
-            color: #FFFFFF;
-        }
-        .navbar-default .navbar-brand:hover {
-            color: #FFFF00;
-        }
-        .form-horizontal .control-label {
-            /* text-align:right; */
-            
-            text-align: center;
-        }
-        .list-group {
-            list-style: decimal inside;
-        }
-        .list-group-item.list-num {
-            display: list-item;
-        }
-        /* Add a gray background color and some padding to the footer */
-        
-        footer {
-            background-color: #f2f2f2;
-            padding: 25px;
-        }
-        /* Hide the carousel text when the screen is less than 600 pixels wide */
-        
-        @media (max-width: 600px) {
-            .carousel-caption {
-                display: none;
-            }
-        }
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.7);
-            color: #FFFFFF;
-            max-width: 100%;
-            width: 100%;
-            left: 0;
-        }
-    </style>
 </head>
 
 <body>
