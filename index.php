@@ -4,56 +4,14 @@
 <head>
     <title>Home - UALink</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/custom.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style>
-        .bg-nav {
-            background-color: #8B0000;
-            color: #ffffff;
-        }
-        .nav.navbar-nav.navbar-color li a {
-            color: #FFFFFF;
-        }
-        .navbar-default .navbar-brand {
-            color: #FFFFFF;
-        }
-        .navbar-default .navbar-brand:hover {
-            color: #FFFF00;
-        }
-        .form-horizontal .control-label {
-            /* text-align:right; */
-            
-            text-align: center;
-        }
-        .list-group {
-            list-style: decimal inside;
-        }
-        .list-group-item.list-num {
-            display: list-item;
-        }
-        /* Add a gray background color and some padding to the footer */
-        
-        footer {
-            background-color: #f2f2f2;
-            padding: 25px;
-        }
-        /* Hide the carousel text when the screen is less than 600 pixels wide */
-        
-        @media (max-width: 600px) {
-            .carousel-caption {
-                display: none;
-            }
-        }
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.7);
-            color: #FFFFFF;
-            max-width: 100%;
-            width: 100%;
-            left: 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -138,7 +96,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">News and updates</div>
+                            <div class="panel-heading">NEWS AND UPDATES</div>
                             <div class="panel-body">
 
                                 <ul class="list-group">
@@ -161,21 +119,21 @@
 
 
                     <form class="form-horizontal" role="form">
-                        <div>
-                            <p align="center">Login to your account</p>
+                        <div class="panel-heading">
+                            <p align="left">LOGIN ACCOUNT</p>
                         </div>
                         <div class="form-group">
 
                             <div class="col-sm-12 input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" class="form-control" id="studentID" placeholder="Enter Student Number">
+                                <input type="text" class="form-control" id="studentID" placeholder="Student Number (e.g., 2014-0001-A)">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-sm-12 input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                                <input type="password" class="form-control" id="passwd" placeholder="Enter password">
+                                <input type="password" class="form-control" id="passwd" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -187,15 +145,14 @@
                 </div>
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">How to login</div>
+                    <div class="panel-heading">HOW TO LOGIN</div>
                     <div class="panel-body">
                         <ol type="1" class="list-group">
-                            <li class="list-group-item list-num">Enter your Student Number (e.g. 2015-1002-A)</li>
+                            <li class="list-group-item list-num">Enter your Student ID Number (e.g. 2015-1002-A)</li>
                             <li class="list-group-item list-num">Enter your password</li>
-                            <li class="list-group-item list-num">click the "Login" button.</li>
+                            <li class="list-group-item list-num">Click the "Login" button.</li>
                             <li class="list-group-item list-num">For new users, please see MIS office for your password.
                             </li>
-
                         </ol>
 
 
@@ -203,7 +160,7 @@
                 </div>
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Like Us on Facebook</div>
+                    <div class="panel-heading">LIKE US ON FACEBOOK</div>
                     <div class="panel-body">
                         <div class="fb-page" data-href="https://www.facebook.com/universityofantique/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                             <div class="fb-xfbml-parse-ignore">
