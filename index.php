@@ -184,8 +184,7 @@
 
     <br>
     <footer class="container-fluid text-center">
-        <p>Web Application Developed by Gerard James B. Pagliganyen</p>
-        <p>MIS Office, University of Antique</p>
+        <p>Develepod by: ITKenyo</p>
     </footer>
 </body>
 
