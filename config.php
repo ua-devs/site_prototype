@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
 class Database 
 {
 	private static $dbName = 'antiques_dbintegration' ; 
@@ -35,4 +37,3 @@ class Database
 	}
 	
 }
-?>

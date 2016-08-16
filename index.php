@@ -1,45 +1,13 @@
 <?php
-	
-	if(!isset($_SESSION))     {
-		session_start();
+require 'config.php';
+	$chkLogin = 0;
+	if ( !empty($_GET['chkLogin'])) {
+		$chkLogin= $_REQUEST['chkLogin'];
 	}
-
-	require 'config.php';
-	$chkLogin = true;
 	
-	if(!empty($_POST['studentID'])  || !empty($_POST['passkey']) ){
-		$studentID = $_POST['studentID'];
-		$passkey = $_POST['passkey'];
-		$pdo = Database::connect();
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql="SELECT * FROM kioskuser WHERE studId = ? and password = ?";
-		$q = $pdo->prepare($sql);
-		$q->execute(array($studentID, $passkey));
-
-		$count = $q->rowCount();
-		Database::disconnect();
-		//echo $count;
-		
-		if($count==0){
-			$chkLogin = false;
-			$studentID = null;
-			$passkey = null;
-		} else {
-
-			$pdo = Database::connect();
-			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql="SELECT * FROM kioskuser WHERE studId = '$studentID' and password = '$passkey'";
-			foreach ($pdo->query($sql) as $row) {
-				$studentID = $row['studId'];
-			}
-
-			Database::disconnect();
-			$_SESSION['studentID'] = $studentID;
-			$_SESSION['validity'] = 1;
-			header("Location: index.php");
-		}
-
-	} ?>
+?>
+<?php
+ if ( empty($_SESSION['varStudentID'])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,13 +27,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">UALink</a>
+      <a class="navbar-brand" href="http://antiquespride.edu.ph/ualink">UALink</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">CONTACT</a></li>
+	    <li><a href="#">Contact</a></li>
+        <li><a href="#">Help</a></li>
       </ul>
+
     </div>
   </div>
 </nav>
@@ -73,11 +42,11 @@
  <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-  <?php  if(empty($_SESSION['studentID'])){ ?>
+
 							<span class="help-block">
 							<?php 
 		
-		if($chkLogin == false){
+		if($chkLogin == 1){
 			echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove"></span><strong>  Failed!  </strong>   Student ID Number and Password mismatched!</div>';
 		}
 
@@ -85,27 +54,30 @@
 							</span>	
 	<div class="well">
 	<div class="row">
-		<form class="form-horizontal" role="form" method="post" action="index.php">
+		<form class="form-horizontal" role="form" method="post" action="chkStudentID.php">
 				<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-			<div class="panel-heading">
-				<p align="left">LOGIN ACCOUNT</p>
+			<div class="row">
+				<p align="center"><img src="images/logoua-blk.png" class="img-responsive"/></p>
+				<hr />
+				<h3><p align="left">Log into UALink Account</p></h3>
+				<hr />
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12 input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input type="text" class="form-control" id="studentID" name="studentID" placeholder="Student ID Number (e.g., 2014-0001-A)">
+					<input type="text" class="form-control" id="studentID" name="studentID" placeholder="Student ID Number (e.g., 2014-0001-A)" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12 input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-					<input type="password" class="form-control" id="passkey" name="passkey" placeholder="Password">
+					<input type="password" class="form-control" id="passkey" name="passkey" placeholder="Password" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-log-in"></span> Login</button>
                 </div>
             </div>
 					</div>
@@ -117,11 +89,14 @@
   <div class="col-sm-3"></div>
 </div>
 </div>
+    <footer class="container-fluid text-center">
+        <p>Maintained by: UA Management Information System Office || Developed by: GJ.Paglingayen (ITKenyo / UA Devs) and LA.Bermejo (UA Devs)</p>
+    </footer>
 </body>
 </html>
-					<?php 
-	} else {
-		header("Location: dashboard.php");
-	}
-
-	?>
+<?php
+ } else {
+	 
+ header( 'Location: dashboard.php' );
+ }
+ ?>
