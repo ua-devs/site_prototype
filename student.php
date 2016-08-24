@@ -5,7 +5,7 @@ require 'database.php';
 class Student 
 {
 	//TODO check if this is correct instantiation syntax
-	private Database $db;
+	private $db = new Database();
 	private $Session_StudentID = '';
 	public $userNo;
 	public $lastname;
@@ -14,28 +14,33 @@ class Student
 	
 	public function __construct($Session_StudentID) {
 		//exit('Init function is not allowed');
-		self::$Session_StudentID = $Session_StudentID;
-		self::$db = new Database();
+		$this->$Session_StudentID = $Session_StudentID;
 	}
 
 	public function authenticate($studentID,$studentPassKey)
 	{
-			$sql1="SELECT * FROM kioskuser u WHERE u.studid = '$studentID' AND u.password = '$studentPassKey'"; 
-			$results = $db->row_query($sql1);
-			foreach ($results as $row) {
-				self::$userNo = $row['u.userNo'];
-			}
+		$sql="SELECT * FROM kioskuser u WHERE u.studid = ? AND u.password = ?"; 
+	    $q = $pdo->prepare($sql);
+		$q->execute(array($varStudentID,$varPasskey));
+		
+		$count = $q->rowCount();
+		
+		if($count == 1){
+		$sql1="SELECT u.userNo FROM kioskuser u WHERE u.studid = '$varStudentID' AND u.password = '$varPasskey'"; 
+		foreach ($pdo->query($sql1) as $row) {
+		$userNo = $row['u.userNo'];
+		}
 	}	
 	
 	public function getName()
 	{
-		if (!(self::$Session_StudentID)) die("Student ID required!");
+		if (!($this->$Session_StudentID)) die("Student ID required!");
 		$sql0="SELECT studID, studLname, studFname, studMname FROM studpersonalinfotbl WHERE studID = '$Session_StudentID'"; 
 		$results = $db->row_query($sql0);
 		foreach ($results as $row) {
-			self::$lastname = $row['studLname'];
-			self::$firstname = $row['studFname'];
-			self::$middlename = $row['studMname'];
+			$this->$lastname = $row['studLname'];
+			$this->$firstname = $row['studFname'];
+			$this->$middlename = $row['studMname'];
 		}
 		return getFullName();
 		
@@ -43,7 +48,7 @@ class Student
 
 	public function getFullName()
 	{
-		return self::firstname + ' ' + self::middlename + ' ' + self::lastname;
+		return $this->firstname + ' ' + $this->middlename + ' ' + $this->lastname;
 	}
 }
 ?>
