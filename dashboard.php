@@ -12,6 +12,8 @@ require 'config.php';
 	$varFirstname = $row['studFname'];
 	$varMiddlename = $row['studMname'];
 	Database::disconnect();
+
+	
 	}
 	
 ?>
