@@ -4,41 +4,15 @@ require 'config.php';
 	if ( !empty($_GET['chkLogin'])) {
 		$chkLogin= $_REQUEST['chkLogin'];
 	}
+
+	//TODO: replace with Student instantiation.
 	
 ?>
 <?php
  if ( empty($_SESSION['varStudentID'])) { ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>UALink</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" 
-		   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
- <nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://antiquespride.edu.ph/ualink">UALink</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-	    <li><a href="#">Contact</a></li>
-        <li><a href="#">Help</a></li>
-      </ul>
+  <?php include '_head.php';  ?>
 
-    </div>
-  </div>
-</nav>
+
 <div class="container">
  <div class="row">
   <div class="col-sm-3"></div>
