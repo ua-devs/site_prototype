@@ -20,16 +20,7 @@ class Student
 	public function authenticate($studentID,$studentPassKey)
 	{
 		$sql="SELECT * FROM kioskuser u WHERE u.studid = ? AND u.password = ?"; 
-	    $q = $pdo->prepare($sql);
-		$q->execute(array($varStudentID,$varPasskey));
-		
-		$count = $q->rowCount();
-		
-		if($count == 1){
-		$sql1="SELECT u.userNo FROM kioskuser u WHERE u.studid = '$varStudentID' AND u.password = '$varPasskey'"; 
-		foreach ($pdo->query($sql1) as $row) {
-		$userNo = $row['u.userNo'];
-		}
+		return ($db->count($sql,array($studentID,$studentPassKey)) == 1);
 	}	
 	
 	public function getName()

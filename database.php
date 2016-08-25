@@ -7,7 +7,8 @@ class Database
 	private $dbName = 'antiques_dbintegration' ; 
 	private $dbHost = 'localhost' ;
 	private $dbUsername = 'root';
-	private $dbUserPassword = 'toor';
+	//private $dbUserPassword = 'toor';
+	private $dbUserPassword = '';
 	private $db_connection  = null;
 	
 	public function __construct() {
@@ -15,7 +16,8 @@ class Database
 		$this->$dbName = 'antiques_dbintegration' ; 
 		$this->$dbHost = 'localhost' ;
 	 	$this->$dbUsername = 'root';
-		$this->$dbUserPassword = 'toor';
+		//$this->$dbUserPassword = 'toor';
+		$this->$dbUserPassword = '';
 
 		//establish a connection right while being constructed
 		$this->$db_connection = connect();
