@@ -13,6 +13,14 @@ footer {
 	margin-top: 50px;
 }
 
-a {
-	outline:0 !important; /*remove dotted outline in links*/
+a,button, input[type=button] {
+	outline:0 !important; /*remove dotted outline in links, buttons*/
+}
+
+
+a:active,
+button:active {
+	/* button press-down effect*/
+	position: relative;
+	top:1px;
 }
