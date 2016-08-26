@@ -52,11 +52,11 @@ class Database
 	
 	public function row_query($sql_query)
 	{
-		connect();
+		$this->connect();
 
 		//TODO check syntax here; we should return the rows as an array
 
-		$rows = $db_connection->query($sql_query);
+		$rows = $this->db_connection->query($sql_query);
 		$this->disconnect();
 		return $rows;
 	}
