@@ -11,22 +11,22 @@ if(empty($student->studentID)){
 }
 else{	
 	$student->getName();
-?>
+	?>
 
 
-<?php	
+	<?php	
 	#HTML client-side code
 	include '_head.php';  
-?>
+	?>
+	<div class="well">
+		<h1 class="pull-left"><span class="glyphicon glyphicon-user"></span> </h1>
+		<h1> Student ID: <b><?php echo $student->studentID ?></b></h1>
+		<p><b><?php echo "$student->fullname"; ?></b> 
+			<small><a href="logout.php">(Not you?)</a></small>
+		</p>
+	</div>
 	<div class="container">
-		<div class="row">
-			<dl class="dl-horizontal">
-				<dt>Student ID :</dt>
-				<dd><?php echo $student->studentID ?></dd>
-				<dt>Full name :</dt>
-				<dd><?php echo "$student->fullname"; ?></dd>
-			</dl>
-		</div>
+
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#grade">Grades</a></li>
@@ -50,27 +50,40 @@ else{
 						</thead>
 						<tbody>
 							<?php
-							$pdo = Database::connect();
-							$sql = "SELECT o.syear AS vSchoolYear, o.semno AS vSemester,
-							c.subjname AS vSubjectName, c.subjtitle AS vSubjectTitle,
-							s.subjfgrade as vSubjectGrade, s.subjcomp AS vSubjectCompletion, s.creditearned AS vSubjectEarned
-							FROM studidsubjid s, subjcodtbl c, subjectsoffered o
-							WHERE studid = '$studID' AND s.subjid = o.subjectid AND o.subjectcode = c.subjcod
-							ORDER BY o.syear, o.semno";
+							// $pdo = Database::connect();
+							// $sql = "SELECT o.syear AS vSchoolYear, o.semno AS vSemester,
+							// c.subjname AS vSubjectName, c.subjtitle AS vSubjectTitle,
+							// s.subjfgrade as vSubjectGrade, s.subjcomp AS vSubjectCompletion, s.creditearned AS vSubjectEarned
+							// FROM studidsubjid s, subjcodtbl c, subjectsoffered o
+							// WHERE studid = '$studID' AND s.subjid = o.subjectid AND o.subjectcode = c.subjcod
+							// ORDER BY o.syear, o.semno";
 
-							foreach ($pdo->query($sql) as $row) {
-								echo '<tr>';
-								echo '<td>' . $row['vSchoolYear'];
-								echo '<td>' . $row['vSemester'];
-								echo '<td>' . $row['vSubjectName'];
-								echo '<td>' . $row['vSubjectTitle'];
-								echo '<td>' . $row['vSubjectGrade'];
-								echo '<td>' . $row['vSubjectCompletion'];
-								echo '<td>' . $row['vSubjectEarned'];
-								echo '<tr>';
+							// foreach ($pdo->query($sql) as $row) {
+							// 	echo '<tr>';
+							// 	echo '<td>' . $row['vSchoolYear'];
+							// 	echo '<td>' . $row['vSemester'];
+							// 	echo '<td>' . $row['vSubjectName'];
+							// 	echo '<td>' . $row['vSubjectTitle'];
+							// 	echo '<td>' . $row['vSubjectGrade'];
+							// 	echo '<td>' . $row['vSubjectCompletion'];
+							// 	echo '<td>' . $row['vSubjectEarned'];
+							// 	echo '<tr>';
+							// }
+
+							// Database::disconnect();
+
+							foreach ($student->getGrades() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vSubjectName'] . "</td>";
+								echo "<td>" . $row['vSubjectTitle'] . "</td>";
+								echo "<td>" . $row['vSubjectGrade'] . "</td>";
+								echo "<td>" . $row['vSubjectCompletion'] . "</td>";
+								echo "<td>" . $row['vSubjectEarned'] . "</td>";
+								echo "<tr>";	
 							}
 
-							Database::disconnect();
 							?>
 						</tbody>
 					</table>
@@ -91,20 +104,31 @@ else{
 						</thead>
 						<tbody>
 							<?php
-							$pdo = Database::connect();
-							$sql2 = "SELECT studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, fund AS vFund, account AS vAccount, round(amount,2) AS vAmount FROM tblstudappraisal WHERE studid = '$studID' ORDER BY sy, term, fund, account";
+							// $pdo = Database::connect();
+							// $sql2 = "SELECT studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, fund AS vFund, account AS vAccount, round(amount,2) AS vAmount FROM tblstudappraisal WHERE studid = '$studID' ORDER BY sy, term, fund, account";
 
-							foreach ($pdo->query($sql2) as $row) {
-								echo '<tr>';
-								echo '<td>' . $row['vSchoolYear'];
-								echo '<td>' . $row['vSemester'];
-								echo '<td>' . $row['vFund'];
-								echo '<td>' . $row['vAccount'];
-								echo '<td>' . $row['vAmount'];
-								echo '<tr>';
+							// foreach ($pdo->query($sql2) as $row) {
+							// 	echo '<tr>';
+							// 	echo '<td>' . $row['vSchoolYear'];
+							// 	echo '<td>' . $row['vSemester'];
+							// 	echo '<td>' . $row['vFund'];
+							// 	echo '<td>' . $row['vAccount'];
+							// 	echo '<td>' . $row['vAmount'];
+							// 	echo '<tr>';
+							// }
+
+							// Database::disconnect();
+
+							foreach ($student->getAppraisal() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vFund'] . "</td>";
+								echo "<td>" . $row['vAccount'] . "</td>"; 
+								echo "<td>" . $row['vAmount'] . "</td>"; 
+								echo "</tr>";
 							}
 
-							Database::disconnect();
 							?>
 						</tbody>
 					</table>
@@ -126,35 +150,43 @@ else{
 						</thead>
 						<tbody>
 							<?php
-							$pdo = Database::connect();
-							$sql3 = "Select studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, orno AS vORno, fund AS vFund, account AS vAccount, round(amount,2) as vAmount
-							from tblstudpayment  where studid = '$studID'
-							order by sy, term, fund, account";
+							// $pdo = Database::connect();
+							// $sql3 = "Select studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, orno AS vORno, fund AS vFund, account AS vAccount, round(amount,2) as vAmount
+							// from tblstudpayment  where studid = '$studID'
+							// order by sy, term, fund, account";
 
-							foreach ($pdo->query($sql3) as $row) {
-								echo '<tr>';
-								echo '<td>' . $row['vSchoolYear'];
-								echo '<td>' . $row['vSemester'];
-								echo '<td>' . $row['vORno'];
-								echo '<td>' . $row['vFund'];
-								echo '<td>' . $row['vAccount'];
-								echo '<td>' . $row['vAmount'];
-								echo '<tr>';
-							}
+							// foreach ($pdo->query($sql3) as $row) {
+							// 	echo '<tr>';
+							// 	echo '<td>' . $row['vSchoolYear'];
+							// 	echo '<td>' . $row['vSemester'];
+							// 	echo '<td>' . $row['vORno'];
+							// 	echo '<td>' . $row['vFund'];
+							// 	echo '<td>' . $row['vAccount'];
+							// 	echo '<td>' . $row['vAmount'];
+							// 	echo '<tr>';
+							// }
 
-							Database::disconnect();
+							// Database::disconnect();
+
+							foreach ($student->getPayments() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vORno'] . "</td>";
+								echo "<td>" . $row['vFund'] . "</td>";
+								echo "<td>" . $row['vAccount'] . "</td>";
+								echo "<td>" . $row['vAmount'] . "</td>";
+								echo "</tr>";
+							}							
+
 							?>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		<footer class="container-fluid text-center">
-			<p>Maintained by: UA Management Information System Office || Developed by: GJ.Paglingayen (ITKenyo / UA Devs) and LA.Bermejo (UA Devs)</p>
-		</footer>
-	</body>
-	</html>
-	<?php
 
-}
-?>
+		<?php
+		require '_footer.php';
+	}
+	?>
