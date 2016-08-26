@@ -13,14 +13,14 @@ class Database
 	
 	public function __construct() {
 		//exit('Init function is not allowed');
-		$this->$dbName = 'antiques_dbintegration' ; 
-		$this->$dbHost = 'localhost' ;
-	 	$this->$dbUsername = 'root';
-		//$this->$dbUserPassword = 'toor';
-		$this->$dbUserPassword = '';
+		$this->dbName = 'antiques_dbintegration' ; 
+		$this->dbHost = 'localhost' ;
+	 	$this->dbUsername = 'root';
+		//$this->dbUserPassword = 'toor';
+		$this->dbUserPassword = '';
 
 		//establish a connection right while being constructed
-		$this->$db_connection = connect();
+		$this->db_connection = $this->connect();
 	}
 	
 	/**
@@ -29,12 +29,12 @@ class Database
 	public function connect()
 	{
 	   // One connection through whole application
-       if ( null == $this->$db_connection )
+       if ( null == $this->db_connection )
        {      
         try 
         {
-          	$this->$db_connection =  new PDO( "mysql:host=".$this->$dbHost.";"."dbname=".$this->$dbName, $this->$dbUsername, $this->$dbUserPassword);
-       		$this->$db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          	$this->db_connection =  new PDO( "mysql:host=".$this->dbHost.";"."dbname=".$this->dbName, $this->dbUsername, $this->dbUserPassword);
+       		$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e) 
         {
@@ -42,12 +42,12 @@ class Database
         }
        } 
 
-       return $this->$db_connection;
+       return $this->db_connection;
 	}
 	
 	public function disconnect()
 	{
-		$this->$db_connection = null;
+		$this->db_connection = null;
 	}
 	
 	public function row_query($sql_query)
@@ -56,15 +56,15 @@ class Database
 
 		//TODO check syntax here; we should return the rows as an array
 
-		var $rows = $db_connection->query($sql_query);
+		$rows = $db_connection->query($sql_query);
 		$this->disconnect();
 		return $rows;
 	}
 
 	public function count($sql_query, $parameters_array)
 	{
-		connect();
-		$q = $db_connection->prepare($sql_query);
+		$this->connect();
+		$q = $this->db_connection->prepare($sql_query);
 		$q->execute($parameters_array);
 		return $q->rowCount();
 	}
