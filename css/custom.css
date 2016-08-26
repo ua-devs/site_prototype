@@ -12,3 +12,7 @@ body {
 footer {
 	margin-top: 50px;
 }
+
+a {
+	outline:0 !important; /*remove dotted outline in links*/
+}
