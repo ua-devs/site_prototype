@@ -58,6 +58,8 @@ class Database
 
 		$rows = $this->db_connection->query($sql_query);
 		$this->disconnect();
+		if (count($rows)==0) return array(); #return an empty array
+		#otherwise
 		return $rows;
 	}
 
