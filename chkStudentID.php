@@ -4,8 +4,13 @@
     $varStudentID = $_POST['studentID'];
     $varPasskey = $_POST['passkey'];
 	
+	#let's define a student
     $student = new Student($varStudentID);
+    #then let's check if he's in the db
 	if ($student->isAuthenticated($varStudentID,$varPasskey)){
+		#Student is ok! let's save the ID into the SESSION
+		$_SESSION['varStudentID']= $varStudentID;
+		#Note that we can save the $student object into the SESSION but in case we become traffic-heavy or Student contains unserializable properties (like its $db property), they will come out in unexpected form, and it's better to requery the Student (store only the ID) in the next page (see http://stackoverflow.com/questions/132194/php-storing-objects-inside-the-session)
 		header("Location: dashboard.php");
 	}
 	else {
