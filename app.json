@@ -1,0 +1,21 @@
+{
+  "name": "site_prototype",
+  "description": "required file by heroku for testing pipeline",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ]
+}
