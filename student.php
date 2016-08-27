@@ -12,6 +12,9 @@ class Student
 	public $middlename;
 	public $fullname;
 	
+	#Student's Records arrays. use the corresponding get* (e.g. $this->getPayments()) methods to populate these.
+	public $grades, $appraisals, $payments;
+
 	function __construct($Session_StudentID) {
 		//exit('Init function is not allowed');
 		if (!$Session_StudentID || empty($Session_StudentID)) {
@@ -47,19 +50,22 @@ class Student
 							FROM studidsubjid s, subjcodtbl c, subjectsoffered o
 							WHERE studid = '$this->studentID' AND s.subjid = o.subjectid AND o.subjectcode = c.subjcod
 							ORDER BY o.syear, o.semno";
-		return $this->getData($sql);
+		$this->grades = $this->getData($sql);
+		return $this->grades;
 	}
 
-	public function getAppraisal()
+	public function getAppraisals()
 	{
 		$sql = "SELECT studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, fund AS vFund, account AS vAccount, round(amount,2) AS vAmount FROM tblstudappraisal WHERE studid = '$this->studentID' ORDER BY sy, term, fund, account";
-		return $this->getData($sql);
+		$this->appraisals = $this->getData($sql);
+		return $this->appraisals;
 	}
 
 	public function getPayments()
 	{
 		$sql = "SELECT studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, orno AS vORno, fund AS vFund, account AS vAccount, round(amount,2) as vAmount from tblstudpayment  where studid = '$this->studentID' order by sy, term, fund, account";
-		return $this->getData($sql);
+		$this->payments = $this->getData($sql);
+		return $this->payments;
 	}
 
 	# Utility methods

@@ -3,7 +3,12 @@
 	# Note that Student.php already contains session_start(). 
 	# ALso its constructor contains the 'empty' check to redirect to login if no studentID
 	# We only need to instantiate it and present its data here in dashboard.
-	$student = new Student($_SESSION['varStudentID']); 
+	$student = new Student($_SESSION['varStudentID']);
+
+	#If we had not redirected at this point, it means student is valid. Let's retireve his info, so w can display it in the HTML.
+	$student->getGrades();
+	$student->getAppraisals();
+	$studentID->getPayments(); 
 ?>
 
 <?php	
@@ -64,17 +69,21 @@
 							// }
 
 							// Database::disconnect();
-
-						foreach ($student->getGrades() as $row) {
-							echo "<tr>";
-							echo "<td>" . $row['vSchoolYear'] . "</td>";
-							echo "<td>" . $row['vSemester'] . "</td>";
-							echo "<td>" . $row['vSubjectName'] . "</td>";
-							echo "<td>" . $row['vSubjectTitle'] . "</td>";
-							echo "<td>" . $row['vSubjectGrade'] . "</td>";
-							echo "<td>" . $row['vSubjectCompletion'] . "</td>";
-							echo "<td>" . $row['vSubjectEarned'] . "</td>";
-							echo "<tr>";	
+						if(count($student->grades)){
+							foreach ($student->getGrades() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vSubjectName'] . "</td>";
+								echo "<td>" . $row['vSubjectTitle'] . "</td>";
+								echo "<td>" . $row['vSubjectGrade'] . "</td>";
+								echo "<td>" . $row['vSubjectCompletion'] . "</td>";
+								echo "<td>" . $row['vSubjectEarned'] . "</td>";
+								echo "<tr>";	
+							}
+						}
+						else {
+							echo "<tr><td>No data yet.</td></tr>";
 						}
 
 						?>
@@ -111,15 +120,18 @@
 							// }
 
 							// Database::disconnect();
-
-						foreach ($student->getAppraisal() as $row) {
-							echo "<tr>";
-							echo "<td>" . $row['vSchoolYear'] . "</td>";
-							echo "<td>" . $row['vSemester'] . "</td>";
-							echo "<td>" . $row['vFund'] . "</td>";
-							echo "<td>" . $row['vAccount'] . "</td>"; 
-							echo "<td>" . $row['vAmount'] . "</td>"; 
-							echo "</tr>";
+						if(count($student->appraisals)){
+							foreach ($student->getAppraisals() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vFund'] . "</td>";
+								echo "<td>" . $row['vAccount'] . "</td>"; 
+								echo "<td>" . $row['vAmount'] . "</td>"; 
+								echo "</tr>";
+						}
+						else {
+							echo "<tr><td>No data yet.</td></tr>";
 						}
 
 						?>
@@ -160,17 +172,22 @@
 							// }
 
 							// Database::disconnect();
-
-						foreach ($student->getPayments() as $row) {
-							echo "<tr>";
-							echo "<td>" . $row['vSchoolYear'] . "</td>";
-							echo "<td>" . $row['vSemester'] . "</td>";
-							echo "<td>" . $row['vORno'] . "</td>";
-							echo "<td>" . $row['vFund'] . "</td>";
-							echo "<td>" . $row['vAccount'] . "</td>";
-							echo "<td>" . $row['vAmount'] . "</td>";
-							echo "</tr>";
-						}							
+						
+						if(count($student->payments)){
+							foreach ($student->getPayments() as $row) {
+								echo "<tr>";
+								echo "<td>" . $row['vSchoolYear'] . "</td>";
+								echo "<td>" . $row['vSemester'] . "</td>";
+								echo "<td>" . $row['vORno'] . "</td>";
+								echo "<td>" . $row['vFund'] . "</td>";
+								echo "<td>" . $row['vAccount'] . "</td>";
+								echo "<td>" . $row['vAmount'] . "</td>";
+								echo "</tr>";
+							}	
+						}
+						else {
+							echo "<tr><td>No data yet.</td></tr>";
+						}						
 
 						?>
 					</tbody>
