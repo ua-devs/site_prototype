@@ -9,6 +9,8 @@
 	$student->getGrades();
 	$student->getAppraisals();
 	$student->getPayments(); 
+
+	$warningcaption = '<caption class="alert alert-warning"><i>No data yet.</caption>';
 ?>
 
 <?php	
@@ -34,7 +36,7 @@
 
 		<div class="tab-content">
 			<div id="grade" class="tab-pane fade in active">
-				<table class="table table-hover table-striped table-bordered">
+				<table class="table table-responsive table-hover table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>School Year</th>
@@ -83,17 +85,14 @@
 							}
 						}
 						else {
-							echo "<tr><td>No data yet.</td></tr>";
+							echo $warningcaption;
 						}
-
 						?>
 					</tbody>
 				</table>
 			</div>
 			<div id="appraisal" class="tab-pane fade">
-
-
-				<table class="table table-hover table-striped table-bordered">
+				<table class="table table-responsive table-hover table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>School Year</th>
@@ -132,7 +131,7 @@
 							}
 						}
 						else {
-							echo "<tr><td>No data yet.</td></tr>";
+							echo $warningcaption;
 						}
 
 						?>
@@ -143,7 +142,7 @@
 			<div id="payment" class="tab-pane fade">
 
 
-				<table class="table table-hover table-striped table-bordered">
+				<table class="table table-responsive table-hover table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>School Year</th>
@@ -187,9 +186,8 @@
 							}	
 						}
 						else {
-							echo "<tr><td>No data yet.</td></tr>";
+							echo $warningcaption;
 						}						
-
 						?>
 					</tbody>
 				</table>
