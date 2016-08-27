@@ -17,7 +17,7 @@ class Student
 		if (!$Session_StudentID || empty($Session_StudentID)) {
 			header("Location: index.php?chkLogin=no_access");
 		}
-
+		$_SESSION['varStudentID']= $Session_StudentID;
 		$this->studentID = $Session_StudentID;
 		$this->db = new Database();
 		$this->getName();
