@@ -14,12 +14,13 @@ class Student
 	
 	function __construct($Session_StudentID) {
 		//exit('Init function is not allowed');
-		if (!$Session_StudentID) {
-			header("Location: index.php?chkLogin=1");
+		if (!$Session_StudentID || empty($Session_StudentID)) {
+			header("Location: index.php?chkLogin=no_access");
 		}
 
 		$this->studentID = $Session_StudentID;
 		$this->db = new Database();
+		$this->getName();
 	}
 
 	public function getName()

@@ -14,7 +14,8 @@
 		header("Location: dashboard.php");
 	}
 	else {
-		header("Location: index.php?chkLogin=1");
+		// header("Location: index.php?chkLogin=1");
+		header("Location: index.php?chkLogin=failed");
 	}
 
 	//require 'config.php';

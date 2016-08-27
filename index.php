@@ -19,7 +19,7 @@ if ( empty($_SESSION['varStudentID'])) { ?>
 
 			<div class="well">
 				<div class="row">
-					<form class="form-horizontal" role="form" method="post" action="chkStudentID.php" autocomplete="false">
+					<form class="form-horizontal" role="form" method="post" action="dashboard.php" autocomplete="false">
 						<div class="col-sm-1"></div>
 						<div class="col-sm-10">
 							<div class="row">
@@ -30,7 +30,8 @@ if ( empty($_SESSION['varStudentID'])) { ?>
 							</div>
 							<span class="help-block">
 								<?php 
-								if($chkLogin == 1){
+								// if($chkLogin == 1){
+								if($chkLogin){
 									echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove"></span><strong>  Failed!  </strong>   Student ID Number and Password mismatched!</div>';
 								}
 								?>

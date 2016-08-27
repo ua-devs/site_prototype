@@ -25,17 +25,17 @@ class Database
 	}
 	
 	/**
-		some basic database operations
+	* Basic Connect and Disconnect
 	*/
 	public function connect()
 	{
-		#config for Heroku ClearDB (mysql addon)
+		#Config for Heroku ClearDB (mysql addon).
+		#Just comment these out when moving to AntiquesPride; the default values above will be used.
 		$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 		$this->dbName = substr($url["path"], 1); 
 		$this->dbHost = $url["host"];
 		$this->dbUsername = $url["user"];
 		$this->dbUserPassword = $url["pass"];
-		$this->db_connection  = null;
 
 	   // One connection through whole application
 		if ( null == $this->db_connection )
@@ -53,18 +53,20 @@ class Database
 
 		return $this->db_connection;
 	}
-
 	public function disconnect()
 	{
 		$this->db_connection = null;
 	}
 
+
+
+	/**
+	* 	Utility for just getting database rows. 
+	*/
 	public function row_query($sql_query)
 	{
 		$this->connect();
-
-	//TODO check syntax here; we should return the rows as an array
-
+		//we return the rows as an array
 		$rows = $this->db_connection->query($sql_query);
 		$this->disconnect();
 		if (count($rows)==0) return array(); #return an empty array
@@ -72,6 +74,9 @@ class Database
 		return $rows;
 	}
 
+	/**
+	* 	Utility for just getting a quick row count.
+	*/
 	public function count($sql_query, $parameters_array)
 	{
 		$this->connect();
@@ -80,6 +85,9 @@ class Database
 		return $q->rowCount();
 	}
 
+	/**
+	* 	Utility for executing sql scripts such as Create and Insert
+	*/
 	public function exec($sql_script){
 		$this->connect();
 		try {
