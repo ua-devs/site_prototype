@@ -129,6 +129,7 @@
 								echo "<td>" . $row['vAccount'] . "</td>"; 
 								echo "<td>" . $row['vAmount'] . "</td>"; 
 								echo "</tr>";
+							}
 						}
 						else {
 							echo "<tr><td>No data yet.</td></tr>";
@@ -172,7 +173,7 @@
 							// }
 
 							// Database::disconnect();
-						
+
 						if(count($student->payments)){
 							foreach ($student->getPayments() as $row) {
 								echo "<tr>";
