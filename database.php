@@ -11,20 +11,11 @@ class Database
 	// private $db_connection  = null;
 
 	#config for AntiquesPride.edu.ph
-	// private $dbName = 'antiques_dbintegration' ; 
-	// private $dbHost = 'localhost' ;
-	// private $dbUsername = 'root';
-	// private $dbUserPassword = 'toor';
-	// private $db_connection  = null;
-
-	#config for Heroku ClearDB (mysql addon)
-	private $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-	private $dbName = substr($url["path"], 1); 
-	private $dbHost = $url["host"];
-	private $dbUsername = $url["user"];
-	private $dbUserPassword = $url["pass"];
+	private $dbName = 'antiques_dbintegration' ; 
+	private $dbHost = 'localhost' ;
+	private $dbUsername = 'root';
+	private $dbUserPassword = 'toor';
 	private $db_connection  = null;
-
 
 	
 	public function __construct() {
@@ -38,33 +29,41 @@ class Database
 	*/
 	public function connect()
 	{
-	   // One connection through whole application
-       if ( null == $this->db_connection )
-       {      
-        try 
-        {
-          	$this->db_connection =  new PDO( "mysql:host=".$this->dbHost.";"."dbname=".$this->dbName, $this->dbUsername, $this->dbUserPassword);
-       		$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        catch(PDOException $e) 
-        {
-          die($e->getMessage());  
-        }
-       } 
+		#config for Heroku ClearDB (mysql addon)
+		$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+		$this->dbName = substr($url["path"], 1); 
+		$this->dbHost = $url["host"];
+		$this->dbUsername = $url["user"];
+		$this->dbUserPassword = $url["pass"];
+		$this->db_connection  = null;
 
-       return $this->db_connection;
+	   // One connection through whole application
+		if ( null == $this->db_connection )
+		{      
+			try 
+			{
+				$this->db_connection =  new PDO( "mysql:host=".$this->dbHost.";"."dbname=".$this->dbName, $this->dbUsername, $this->dbUserPassword);
+				$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			}
+			catch(PDOException $e) 
+			{
+				die($e->getMessage());  
+			}
+		} 
+
+		return $this->db_connection;
 	}
-	
+
 	public function disconnect()
 	{
 		$this->db_connection = null;
 	}
-	
+
 	public function row_query($sql_query)
 	{
 		$this->connect();
 
-		//TODO check syntax here; we should return the rows as an array
+	//TODO check syntax here; we should return the rows as an array
 
 		$rows = $this->db_connection->query($sql_query);
 		$this->disconnect();
