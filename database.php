@@ -43,8 +43,10 @@ class Database
        {      
         try 
         {
-          	$this->db_connection =  new PDO( "mysql:host=".$this->dbHost.";"."dbname=".$this->dbName, $this->dbUsername, $this->dbUserPassword);
-       		$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         	// $this->db_connection =  new PDO( "mysql:host=".$this->dbHost.";"."dbname=".$this->dbName, $this->dbUsername, $this->dbUserPassword);
+       		// $this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       		$this->db_connection = new mysqli($this->dbHost, $this->dbUsername, $this->dbUserPassword, $this->dbName);
         }
         catch(PDOException $e) 
         {
