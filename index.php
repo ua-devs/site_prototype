@@ -19,7 +19,7 @@ if ( empty($_SESSION['varStudentID'])) { ?>
 
 			<div class="well">
 				<div class="row">
-					<form class="form-horizontal" role="form" method="post" action="dashboard.php" autocomplete="false">
+					<form class="form-horizontal" role="form" method="post" action="chkStudentID.php" autocomplete="false">
 						<div class="col-sm-1"></div>
 						<div class="col-sm-10">
 							<div class="row">

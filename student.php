@@ -58,7 +58,7 @@ class Student
 
 	public function getPayments()
 	{
-		$sql = "Select studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, orno AS vORno, fund AS vFund, account AS vAccount, round(amount,2) as vAmount from tblstudpayment  where studid = '$this->studentID' order by sy, term, fund, account";
+		$sql = "SELECT studid AS vStudentID, sy AS vSchoolYear, term AS vSemester, orno AS vORno, fund AS vFund, account AS vAccount, round(amount,2) as vAmount from tblstudpayment  where studid = '$this->studentID' order by sy, term, fund, account";
 		return $this->getData($sql);
 	}
 

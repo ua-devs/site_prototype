@@ -3,7 +3,7 @@
 	# Note that Student.php already contains session_start(). 
 	# ALso its constructor contains the 'empty' check to redirect to login if no studentID
 	# We only need to instantiate it and present its data here in dashboard.
-	$student = new Student($_POST['studentID']); 
+	$student = new Student($_SESSION['varStudentID']); 
 ?>
 
 <?php	
