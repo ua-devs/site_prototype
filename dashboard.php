@@ -198,12 +198,3 @@
 <?php
 	require '_footer.php';
 ?>
-
-<!-- 
-<?php 
-	echo var_dump($student);
-	echo count($student->grades); 
-	echo count($student->appraisals);
-	echo count($student->payments);
-?>
- -->
