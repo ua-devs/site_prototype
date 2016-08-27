@@ -8,7 +8,7 @@
 	#If we had not redirected at this point, it means student is valid. Let's retireve his info, so w can display it in the HTML.
 	$student->getGrades();
 	$student->getAppraisals();
-	$studentID->getPayments(); 
+	$student->getPayments(); 
 ?>
 
 <?php	
