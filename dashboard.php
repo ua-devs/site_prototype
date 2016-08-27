@@ -200,3 +200,10 @@
 <?php
 	require '_footer.php';
 ?>
+
+<!-- 
+<?php 
+	echo var_dump($student);
+	echo count($student->grades) ", " count($student->appraisals)  ", " count($student->payments) 
+?>
+ -->
