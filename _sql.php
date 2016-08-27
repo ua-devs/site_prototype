@@ -173,7 +173,7 @@ INSERT INTO `studpersonalinfotbl` (`studID`, `studLname`, `studFname`, `studMnam
 
 ";
 
-$conn->$exec($create_sql);
-$conn->$exec($insert_sql);
-
+$conn->exec($create_sql);
+$conn->exec($insert_sql);
+$conn = null;
 ?>
