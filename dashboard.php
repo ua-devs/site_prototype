@@ -204,6 +204,8 @@
 <!-- 
 <?php 
 	echo var_dump($student);
-	echo count($student->grades) ", " count($student->appraisals)  ", " count($student->payments) 
+	echo count($student->grades); 
+	echo count($student->appraisals);
+	echo count($student->payments);
 ?>
  -->
