@@ -66,8 +66,14 @@ class Database
 	public function row_query($sql_query)
 	{
 		$this->connect();
+		//we return the rows as PDOStatement
+		// $rows = $this->db_connection->query($sql_query);
+		
 		//we return the rows as an array
-		$rows = $this->db_connection->query($sql_query);
+		$query = $this->db_connection->prepare($sql_query);
+		$query->execute();
+		$rows = $query->fetchAll();
+		
 		$this->disconnect();
 		if (count($rows)==0) return array(); #return an empty array
 		#otherwise
