@@ -80,5 +80,17 @@ class Database
 		$q->execute($parameters_array);
 		return $q->rowCount();
 	}
+
+	public function exec($sql_script){
+		$this->connect();
+		try {
+			$this->db_connection->exec($sql_script);
+		}
+		catch (PDOException $e)
+		{
+			echo $e->getMessage();
+			die();
+		}
+	}
 }
 ?>
