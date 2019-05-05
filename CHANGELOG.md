@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ### Added
 
-- CHANGELOG.md file
+- Created CHANGELOG.md file
    
 ### Changed
  
